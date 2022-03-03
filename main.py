@@ -15,7 +15,6 @@ cmc = []
 
 #I got the names to work, but the oracle text still isn't working for some reason.
 #I have tried color identity, CMC, type_line and they all work, but not oracle_text!
-x = 0
 for card in card_data:
   names.append(card['name'])
   cmc.append(card['cmc'])
