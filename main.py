@@ -18,7 +18,18 @@ cmc = []
 for card in card_data:
   names.append(card['name'])
   cmc.append(card['cmc'])
-  # oracle_text.append(card['oracle_text']) ###this is where the trouble is. i'm getting KeyError: 'oracle_text'
+
+  # Check if card_faces exists in the object
+  if "card_faces" in card.keys():
+    # if card_faces exists, iterate through it to get all oracle_text values
+    card_faces = card["card_faces"]
+
+    for card_face in card_faces:
+      oracle_text.append(card_face["oracle_text"])
+
+  else:
+     oracle_text.append(card['oracle_text']) 
+ 
 
 ### here are the keys from the json that contain every card printed in magic. 'oracle_text' SHOULD work, right? I have even tried copying and pasting it in case it was a spelling mistake.
 
