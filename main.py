@@ -2,7 +2,7 @@
 import json
 
 # with open('oracle-cards-20211214100357.json') as json_file:
-f = open('card_data.json', encoding="utf-8")
+f = open('card_data.json')
 card_data = json.load(f)
 
 # This is the dictionary everything gets added to using the name of the card as a key and some arrays
@@ -15,10 +15,22 @@ cmc = []
 
 #I got the names to work, but the oracle text still isn't working for some reason.
 #I have tried color identity, CMC, type_line and they all work, but not oracle_text!
+x = 0
 for card in card_data:
   names.append(card['name'])
   cmc.append(card['cmc'])
-  # oracle_text.append(card['oracle_text']) ###this is where the trouble is. i'm getting KeyError: 'oracle_text'
+
+  # Check is card_faces exists in the object
+  if "card_faces" in card.keys():
+    # if card_faces exists, iterate through it to get all oracle_text values
+    card_faces = card["card_faces"]
+
+    for card_face in card_faces:
+      oracle_text.append(card_face["oracle_text"])
+      
+  else:
+     oracle_text.append(card['oracle_text']) 
+ 
 
 ### here are the keys from the json that contain every card printed in magic. 'oracle_text' SHOULD work, right? I have even tried copying and pasting it in case it was a spelling mistake.
 
