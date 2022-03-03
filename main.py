@@ -2,7 +2,7 @@
 import json
 
 # with open('oracle-cards-20211214100357.json') as json_file:
-f = open('card_data.json')
+f = open('card_data.json', encoding="utf-8")
 card_data = json.load(f)
 
 # This is the dictionary everything gets added to using the name of the card as a key and some arrays
@@ -20,14 +20,14 @@ for card in card_data:
   names.append(card['name'])
   cmc.append(card['cmc'])
 
-  # Check is card_faces exists in the object
+  # Check if card_faces exists in the object
   if "card_faces" in card.keys():
     # if card_faces exists, iterate through it to get all oracle_text values
     card_faces = card["card_faces"]
 
     for card_face in card_faces:
       oracle_text.append(card_face["oracle_text"])
-      
+
   else:
      oracle_text.append(card['oracle_text']) 
  
